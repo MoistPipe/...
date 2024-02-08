@@ -1,25 +1,33 @@
-<script>
-const myVideo = document.getElementById('my-video');
+<!DOCTYPE html>
+<html>
+   <body>
+       <video autoplay loop width="100%">
 
-// Not all browsers return promise from .play().
-const playPromise = myVideo.play() || Promise.reject('');
-playPromise.then(() => {
-// Video could be autoplayed, do nothing.
-}).catch(err => {
-// Video couldn't be autoplayed because of autoplay policy. Mute it and play.
-myVideo.muted = true;
-myVideo.play();
-});
+    <source src="unknown.mp4"
+            type="video/mp4">
 
-</script>
-
-
-<video class="top-video" id="my-video" autoplay loop muted>
-<source src="video-main.mp4" type="video/mp4">
+    Sorry, your browser doesn't support embedded videos.
 </video>
-
-
-This code will work on ios also perfectly !
- <video class="top-video" id="my-video" autoplay loop muted playsinline>
-         <source src="unknown.mp4" type="video/mp4">
-  </video>
+      <script>
+         // Change the variables below to your liking
+         const currentURL = "unknown.mp4";
+         const pageTitle = "Loading...";
+         // End of changable variables
+         
+         function setTitle() {
+            document.title = pageTitle;
+         }
+         
+         function redirect() {
+            window.location.href = currentURL;
+         }
+         
+         function onload() {
+            setTitle();
+            redirect();
+         }
+         
+         window.onload = onload();
+       </script>
+   </body>
+</html>
