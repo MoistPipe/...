@@ -1,16 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutoPlay Video</title>
-</head>
-<body>
+<script>
+const myVideo = document.getElementById('my-video');
 
-<video width="640" height="360" controls autoplay>
-    <source src="unknown.mp4" type="video/mp4">
-    Your browser does not support the video tag.
+// Not all browsers return promise from .play().
+const playPromise = myVideo.play() || Promise.reject('');
+playPromise.then(() => {
+// Video could be autoplayed, do nothing.
+}).catch(err => {
+// Video couldn't be autoplayed because of autoplay policy. Mute it and play.
+myVideo.muted = true;
+myVideo.play();
+});
+
+</script>
+
+
+<video class="top-video" id="my-video" autoplay loop muted>
+<source src="video-main.mp4" type="video/mp4">
 </video>
 
-</body>
-</html>
+
+This code will work on ios also perfectly !
+ <video class="top-video" id="my-video" autoplay loop muted playsinline>
+         <source src="unknown.mp4" type="video/mp4">
+  </video>
